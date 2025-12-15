@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from dotenv import load_dotenv
-from src.interfaces.api import auth, chat, analysis, public_data, assets, transactions
+from src.interfaces.api import auth, chat, analysis, public_data, assets, transactions, notifications
 
 load_dotenv()
 
@@ -14,6 +14,7 @@ app.include_router(analysis.router)
 app.include_router(public_data.router)
 app.include_router(assets.router)
 app.include_router(transactions.router)
+app.include_router(notifications.router)
 
 origins = [
     "http://localhost:3000",

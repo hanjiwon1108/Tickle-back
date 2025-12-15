@@ -56,3 +56,20 @@ class TransactionResponse(TransactionBase):
     
     class Config:
         orm_mode = True
+
+class NotificationBase(BaseModel):
+    type: str = "info"
+    title: str
+    message: str
+
+class NotificationCreate(NotificationBase):
+    pass
+
+class NotificationResponse(NotificationBase):
+    id: int
+    user_id: int
+    is_read: int
+    created_at: datetime
+    
+    class Config:
+        orm_mode = True

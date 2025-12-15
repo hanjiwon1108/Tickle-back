@@ -16,6 +16,7 @@ class User(Base):
     assets = relationship("Asset", back_populates="owner")
     transactions = relationship("Transaction", back_populates="owner")
     chat_sessions = relationship("ChatSession", back_populates="owner")
+    notifications = relationship("Notification", back_populates="owner")
 
 class AssetType(enum.Enum):
     BANK = "bank"
@@ -69,3 +70,21 @@ class ChatMessage(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
 
     session = relationship("ChatSession", back_populates="messages")
+
+class NotificationType(enum.Enum):
+    RECOMMENDATION = "recommendation"  # 상품 추천
+    ALERT = "alert"  # 알림/경고
+    INFO = "info"  # 정보
+
+class Notification(Base):
+    __tablename__ = "notifications"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    type = Column(Enum(NotificationType), default=NotificationType.INFO)
+    title = Column(String(100))
+    message = Column(String(500))
+    is_read = Column(Integer, default=0)  # 0: unread, 1: read
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    owner = relationship("User", back_populates="notifications")
