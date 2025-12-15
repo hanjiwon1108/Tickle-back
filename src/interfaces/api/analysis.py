@@ -10,14 +10,14 @@ router = APIRouter(prefix="/analysis", tags=["analysis"])
 
 # Mock 카테고리별 지출 데이터
 MOCK_SPENDING_BY_CATEGORY = [
-    {"category": "배달음식", "amount": 320000},
-    {"category": "카페", "amount": 85000},
-    {"category": "쇼핑", "amount": 250000},
-    {"category": "택시비", "amount": 120000},
-    {"category": "마트", "amount": 180000},
-    {"category": "구독", "amount": 45000},
-    {"category": "편의점", "amount": 65000},
-    {"category": "주거비", "amount": 700000},
+    {"category": "배달음식", "amount": 320000, "quantity": 16},
+    {"category": "카페", "amount": 85000, "quantity": 17},
+    {"category": "쇼핑", "amount": 250000, "quantity": 4},
+    {"category": "택시비", "amount": 120000, "quantity": 8},
+    {"category": "마트", "amount": 180000, "quantity": 3},
+    {"category": "구독", "amount": 45000, "quantity": 5},
+    {"category": "편의점", "amount": 65000, "quantity": 12},
+    {"category": "주거비", "amount": 700000, "quantity": 1},
 ]
 
 @router.get("/spending-by-category")
